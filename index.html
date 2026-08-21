@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>Shanmukha Creations — Photography · Weddings · Fashion · Product</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#080808;--card:#111;--border:#1e1e1e;--silver:#C0C0C0;--bright:#E8E8E8;--muted:#555;--white:#F5F5F5}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--bright);font-family:'Inter',sans-serif;font-weight:300;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:0.22;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E")}
+#cur,#cur-ring{position:fixed;border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%)}
+#cur{width:8px;height:8px;background:var(--silver);mix-blend-mode:difference;transition:width .15s,height .15s}
+#cur-ring{width:32px;height:32px;border:1px solid rgba(192,192,192,0.4);transition:left .1s ease,top .1s ease,width .2s,height .2s}
+body.cur-hover #cur{width:18px;height:18px}
+body.cur-hover #cur-ring{width:52px;height:52px}
+@media(hover:none){#cur,#cur-ring{display:none}}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 3rem;background:linear-gradient(to bottom,rgba(8,8,8,.96),transparent)}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.12em;color:var(--white);text-decoration:none}
+.nav-logo span{color:var(--silver)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:.68rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--silver)}
+.nav-cta{font-size:.68rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--black);background:var(--silver);padding:.55rem 1.3rem;border-radius:2px;text-decoration:none;transition:background .2s}
+.nav-cta:hover{background:var(--white)}
+.nav-mob{display:none;background:none;border:none;color:var(--silver);font-size:1.5rem;cursor:pointer;line-height:1;padding:.2rem}
+.mob-menu{display:none;position:fixed;inset:0;background:rgba(8,8,8,.97);z-index:300;flex-direction:column;align-items:center;justify-content:center;gap:2rem}
+.mob-menu.open{display:flex}
+.mob-menu a{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;letter-spacing:.08em;color:var(--white);text-decoration:none;transition:color .2s}
+.mob-menu a:hover{color:var(--silver)}
+.mob-close{position:absolute;top:1.5rem;right:2rem;background:none;border:none;color:var(--silver);font-size:1.6rem;cursor:pointer}
+.ticker{position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--silver);height:30px;overflow:hidden;display:flex;align-items:center}
+.ticker-track{display:flex;animation:tick 32s linear infinite;white-space:nowrap;will-change:transform}
+.ticker-item{font-family:'Bebas Neue',sans-serif;font-size:.7rem;letter-spacing:.25em;color:var(--black);padding:0 2rem}
+.ticker-item::after{content:'◆';font-size:.4rem;margin-left:2rem;opacity:.35}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;padding:0 3rem 5.5rem;overflow:hidden}
+.hero-slides{position:absolute;inset:0;z-index:0}
+.hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;animation:heroFade 16s infinite}
+.hero-slide:nth-child(1){animation-delay:0s;background-image:url('assets/photography/hero-wedding.webp')}
+.hero-slide:nth-child(2){animation-delay:4s;background-image:url('assets/photography/hero-fashion.webp')}
+.hero-slide:nth-child(3){animation-delay:8s;background-image:url('assets/photography/hero-candid.webp')}
+.hero-slide:nth-child(4){animation-delay:12s;background-image:url('assets/photography/hero-product.webp')}
+@keyframes heroFade{0%{opacity:0}4%{opacity:1}25%{opacity:1}29%{opacity:0}100%{opacity:0}}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,8,1) 0%,rgba(8,8,8,.15) 55%,rgba(8,8,8,.65) 100%);z-index:1}
+.hero-bars{position:absolute;left:0;right:0;height:65px;background:var(--black);z-index:2}
+.hero-bars.top{top:0}.hero-bars.bot{bottom:30px}
+.hero-content{position:relative;z-index:3;max-width:900px}
+.hero-pre{font-size:.6rem;font-weight:500;letter-spacing:.4em;text-transform:uppercase;color:var(--silver);margin-bottom:1rem;opacity:0;animation:fadeUp 1s ease forwards .4s}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.4rem,10vw,8rem);line-height:.94;letter-spacing:.02em;color:var(--white);opacity:0;animation:fadeUp 1s ease forwards .7s}
+.hero-title .sil{color:var(--silver)}
+.hero-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.3rem,3.2vw,2.4rem);font-weight:300;color:rgba(192,192,192,.75);display:block;margin-top:.4rem;letter-spacing:.06em}
+.hero-tagline{font-size:.8rem;color:rgba(192,192,192,.55);margin-top:1.2rem;letter-spacing:.06em;opacity:0;animation:fadeUp 1s ease forwards 1.1s}
+.hero-scroll{position:absolute;right:3rem;bottom:4.5rem;z-index:3;display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--muted);font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;writing-mode:vertical-rl;opacity:0;animation:fadeUp 1s ease forwards 1.5s}
+.hero-scroll-line{width:1px;height:44px;background:linear-gradient(to bottom,var(--silver),transparent)}
+.sec-label{font-size:.58rem;font-weight:500;letter-spacing:.38em;text-transform:uppercase;color:var(--silver);margin-bottom:1.1rem;display:flex;align-items:center;gap:.8rem}
+.sec-label::before{content:'';display:block;width:22px;height:1px;background:var(--silver)}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.3rem,5.5vw,4.4rem);letter-spacing:.04em;line-height:.95;color:var(--white)}
+.body-txt{font-size:.9rem;line-height:1.9;color:var(--muted)}
+.body-txt strong{color:var(--bright);font-weight:400}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+/* CATEGORY BAND */
+.cat-band{padding:5rem 3rem;border-top:1px solid var(--border)}
+.cat-inner{max-width:1200px;margin:0 auto}
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:2.5rem}
+.cat-card{position:relative;background:var(--black);aspect-ratio:3/4;overflow:hidden;text-decoration:none;display:flex;align-items:flex-end;padding:1.4rem;cursor:pointer}
+.cat-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(35%) brightness(.75);transition:transform .6s ease,filter .4s ease}
+.cat-card:hover img{transform:scale(1.06);filter:grayscale(0%) brightness(.9)}
+.cat-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,8,.92) 0%,rgba(8,8,8,.05) 60%)}
+.cat-content{position:relative;z-index:2}
+.cat-num{font-family:'Bebas Neue',sans-serif;font-size:.72rem;letter-spacing:.2em;color:var(--silver);margin-bottom:.3rem}
+.cat-name{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.04em;color:var(--white);line-height:1}
+.cat-desc{font-size:.65rem;color:var(--muted);margin-top:.35rem;line-height:1.5}
+/* WISTIA FEATURED CLIP */
+.wistia-feature{padding:0 3rem;margin:2.5rem 0 4rem}
+.wistia-feature-inner{max-width:480px}
+.wistia-feature-lbl{font-size:.58rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--silver);margin-bottom:.8rem}
+.wistia-frame{border-radius:3px;overflow:hidden;background:var(--card);border:1px solid var(--border)}
+@media(max-width:1000px){.wistia-feature{padding:0 1.5rem;margin:2rem 0 3rem}}
+/* WISTIA MULTI-CLIP GRID */
+.video-band{padding:5rem 3rem 6rem;border-top:1px solid var(--border)}
+.video-band-inner{max-width:1200px;margin:0 auto}
+.video-note{font-size:.78rem;color:var(--muted);line-height:1.7;max-width:640px;margin-top:.6rem}
+.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.5rem}
+.video-cell{background:var(--card);border:1px solid var(--border);border-radius:3px;overflow:hidden}
+.video-cell-lbl{font-size:.62rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--silver);padding:.7rem .9rem .3rem}
+@media(max-width:1000px){.video-band{padding:4rem 1.5rem}.video-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.video-grid{grid-template-columns:1fr}}
+/* GALLERY (shared) */
+.gallery{padding:5rem 0 0;border-top:1px solid var(--border)}
+.gallery-head{padding:0 3rem;margin-bottom:2rem;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1.5rem}
+.tabs{display:flex;gap:0;border:1px solid var(--border);border-radius:2px;overflow:hidden;flex-wrap:wrap}
+.tab-btn{background:transparent;border:none;border-right:1px solid var(--border);color:var(--muted);font-family:'Inter',sans-serif;font-size:.58rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:.55rem .95rem;cursor:pointer;transition:background .2s,color .2s}
+.tab-btn:last-child{border-right:none}
+.tab-btn.active{background:var(--silver);color:var(--black)}
+.tab-btn:not(.active):hover{color:var(--silver)}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border)}
+.g-item{position:relative;aspect-ratio:4/5;overflow:hidden;cursor:pointer;background:var(--card);display:none}
+.g-item.show{display:block}
+.g-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease,filter .4s ease;filter:grayscale(20%)}
+.g-item:hover img{transform:scale(1.06);filter:grayscale(0%)}
+.g-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,8,.8),transparent 55%);opacity:0;transition:opacity .3s}
+.g-item:hover .g-overlay{opacity:1}
+.g-lbl{position:absolute;bottom:.7rem;left:.9rem;font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:var(--silver);z-index:2;opacity:0;transition:opacity .3s;font-weight:500}
+.g-item:hover .g-lbl{opacity:1}
+/* VIDEO CLIPS (work-card style) */
+.clips{padding:5rem 3rem 6rem;border-top:1px solid var(--border)}
+.clips-inner{max-width:1200px;margin:0 auto}
+.works-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:2.5rem}
+.work-card{background:var(--black);position:relative;overflow:hidden;aspect-ratio:9/12;display:flex;align-items:flex-end;padding:1.2rem;cursor:pointer;text-decoration:none}
+.wc-thumb{position:absolute;inset:0;background:var(--card);overflow:hidden;transition:transform .5s ease}
+.work-card:hover .wc-thumb{transform:scale(1.05)}
+.wc-thumb img{width:100%;height:100%;object-fit:cover;filter:grayscale(20%);transition:filter .3s}
+.work-card:hover .wc-thumb img{filter:grayscale(0%)}
+.wc-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,8,.95) 0%,rgba(8,8,8,.1) 65%)}
+.wc-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:42px;height:42px;border:1px solid rgba(255,255,255,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:1rem;opacity:0;transition:opacity .3s}
+.work-card:hover .wc-play{opacity:1}
+.wc-content{position:relative;z-index:2}
+.wc-cat{font-size:.5rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--silver);margin-bottom:.22rem}
+.wc-title{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:.05em;color:var(--white);line-height:1}
+.wc-role{font-size:.55rem;color:var(--muted);margin-top:.18rem}
+.wc-arrow{position:absolute;top:.9rem;right:.9rem;z-index:2;width:26px;height:26px;border:1px solid rgba(192,192,192,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--silver);font-size:.6rem;opacity:0;transform:translateY(4px);transition:opacity .3s,transform .3s}
+.work-card:hover .wc-arrow{opacity:1;transform:translateY(0)}
+/* SERVICES */
+.services{padding:5rem 3rem 7rem;border-top:1px solid var(--border)}
+.services-inner{max-width:1200px;margin:0 auto}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:3rem}
+.svc-card{background:var(--black);padding:2.1rem 1.6rem;transition:background .3s}
+.svc-card:hover{background:var(--card)}
+.svc-icon{font-size:1.5rem;margin-bottom:.9rem;display:block}
+.svc-name{font-family:'Bebas Neue',sans-serif;font-size:1.35rem;letter-spacing:.05em;color:var(--white);margin-bottom:.5rem}
+.svc-desc{font-size:.78rem;line-height:1.7;color:var(--muted)}
+.svc-list{margin-top:.9rem;list-style:none}
+.svc-list li{font-size:.68rem;color:var(--muted);padding:.28rem 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.4rem}
+.svc-list li::before{content:'--';color:var(--silver);font-size:.5rem}
+/* CTA */
+.cta-band{background:var(--silver);padding:4rem 3rem;text-align:center}
+.cta-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,4.6vw,3.4rem);letter-spacing:.05em;color:var(--black);margin-bottom:.4rem}
+.cta-sub{font-size:.82rem;color:rgba(0,0,0,.5);margin-bottom:1.8rem}
+.cta-btn{display:inline-block;background:var(--black);color:var(--silver);font-family:'Inter',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;padding:.9rem 2.2rem;text-decoration:none;border-radius:2px;transition:background .2s,color .2s}
+.cta-btn:hover{background:#111;color:var(--white)}
+/* CONTACT */
+.contact{padding:6rem 3rem 9rem;border-top:1px solid var(--border)}
+.contact-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1.3fr;gap:6rem}
+.c-info{display:flex;flex-direction:column;gap:1.1rem;margin-top:1.8rem}
+.ci{display:flex;align-items:flex-start;gap:.9rem}
+.ci-icon{width:32px;height:32px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.78rem;flex-shrink:0;border-radius:2px}
+.ci-lbl{font-size:.54rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:.12rem}
+.ci-val{font-size:.85rem;color:var(--bright)}
+.ci-val a{color:inherit;text-decoration:none;transition:color .2s}
+.ci-val a:hover{color:var(--silver)}
+.form{display:flex;flex-direction:column;gap:.85rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+.fg{display:flex;flex-direction:column;gap:.32rem}
+.fl{font-size:.55rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.fi,.fs,.ft{background:var(--card);border:1px solid var(--border);color:var(--bright);font-family:'Inter',sans-serif;font-size:.83rem;font-weight:300;padding:.78rem .9rem;border-radius:2px;outline:none;transition:border-color .2s;width:100%}
+.fi:focus,.fs:focus,.ft:focus{border-color:var(--silver)}
+.fs{appearance:none;cursor:pointer}
+.ft{resize:vertical;min-height:115px}
+.fi::placeholder,.ft::placeholder{color:var(--muted);font-size:.78rem}
+.fsub{background:var(--silver);color:var(--black);border:none;font-family:'Inter',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:.9rem 2rem;border-radius:2px;cursor:pointer;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:.5rem;margin-top:.3rem}
+.fsub:hover{background:var(--white)}
+.fmsg{font-size:.76rem;padding:.65rem .85rem;border-radius:2px;display:none}
+.fmsg.ok{background:rgba(100,200,100,.07);border:1px solid rgba(100,200,100,.22);color:#90ee90;display:block}
+.fmsg.err{background:rgba(200,80,80,.07);border:1px solid rgba(200,80,80,.22);color:#ff9090;display:block}
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:2rem 3rem 4rem;display:flex;align-items:center;justify-content:space-between}
+.foot-logo{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.12em;color:var(--muted)}
+.foot-copy{font-size:.58rem;color:var(--muted);letter-spacing:.08em}
+.foot-links{display:flex;gap:1.5rem;list-style:none}
+.foot-links a{font-size:.58rem;color:var(--muted);text-decoration:none;letter-spacing:.1em;transition:color .2s}
+.foot-links a:hover{color:var(--silver)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:1000px){
+nav{padding:1.1rem 1.5rem}
+.nav-links,.nav-cta{display:none}
+.nav-mob{display:block}
+.hero{padding:0 1.5rem 5rem}
+.hero-bars{height:50px}
+.hero-scroll{display:none}
+.cat-band{padding:4rem 1.5rem}
+.cat-grid{grid-template-columns:1fr 1fr}
+.gallery-head{padding:0 1.5rem}
+.gallery-grid{grid-template-columns:repeat(2,1fr)}
+.clips{padding:4rem 1.5rem}
+.works-grid{grid-template-columns:1fr 1fr}
+.services{padding:4rem 1.5rem}
+.svc-grid{grid-template-columns:1fr}
+.contact{padding:4rem 1.5rem 6rem}
+.contact-inner{grid-template-columns:1fr;gap:3rem}
+footer{flex-direction:column;gap:1rem;text-align:center;padding:2rem 1.5rem 4rem}
+}
+@media(max-width:560px){
+.cat-grid{grid-template-columns:1fr}
+.works-grid{grid-template-columns:1fr}
+.gallery-grid{grid-template-columns:1fr}
+.form-row{grid-template-columns:1fr}
+.tabs{flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mobMenu">
+<button class="mob-close" id="mobClose">&#10005;</button>
+<a href="#weddings" onclick="closeMob()">Weddings</a>
+<a href="#candid" onclick="closeMob()">Candid</a>
+<a href="#fashion" onclick="closeMob()">Fashion</a>
+<a href="#product" onclick="closeMob()">Product</a>
+<a href="#contact" onclick="closeMob()">Contact</a>
+<a href="index.html" onclick="closeMob()" style="font-size:1.4rem;color:var(--silver)">&larr; Films &amp; VFX</a>
+</div>
+
+<!-- NAV -->
+<nav>
+<a href="index.html" class="nav-logo">Shanmukha <span>Creations</span></a>
+<ul class="nav-links">
+<li><a href="#weddings">Weddings</a></li>
+<li><a href="#candid">Candid</a></li>
+<li><a href="#fashion">Fashion</a></li>
+<li><a href="#product">Product</a></li>
+<li><a href="#contact">Contact</a></li>
+<li><a href="index.html">Films &amp; VFX</a></li>
+</ul>
+<a href="#contact" class="nav-cta">Book a Shoot</a>
+<button class="nav-mob" id="mobOpen">&#9776;</button>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker">
+<div class="ticker-track">
+<span class="ticker-item">Wedding Photography</span>
+<span class="ticker-item">Candid Moments</span>
+<span class="ticker-item">Fashion Editorials</span>
+<span class="ticker-item">Fashion Films</span>
+<span class="ticker-item">Product Photography</span>
+<span class="ticker-item">Product Films</span>
+<span class="ticker-item">Shanmukha Creations</span>
+<span class="ticker-item">Bengaluru, India</span>
+<span class="ticker-item">Wedding Photography</span>
+<span class="ticker-item">Candid Moments</span>
+<span class="ticker-item">Fashion Editorials</span>
+<span class="ticker-item">Fashion Films</span>
+<span class="ticker-item">Product Photography</span>
+<span class="ticker-item">Product Films</span>
+<span class="ticker-item">Shanmukha Creations</span>
+<span class="ticker-item">Bengaluru, India</span>
+</div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+<div class="hero-slides">
+<div class="hero-slide"></div>
+<div class="hero-slide"></div>
+<div class="hero-slide"></div>
+<div class="hero-slide"></div>
+</div>
+<div class="hero-bg"></div>
+<div class="hero-bars top"></div>
+<div class="hero-bars bot"></div>
+<div class="hero-content">
+<p class="hero-pre">Shanmukha Creations &middot; Photography &amp; Films &middot; Bengaluru, India</p>
+<h1 class="hero-title">
+Moments <span class="sil">Held</span><br>Forever
+<span class="hero-sub">Weddings, faces, and products — framed with intention.</span>
+</h1>
+<p class="hero-tagline">Wedding &amp; Candid Photography &nbsp;&middot;&nbsp; Fashion Photography &amp; Films &nbsp;&middot;&nbsp; Product Photography &amp; Films</p>
+</div>
+<div class="hero-scroll"><span class="hero-scroll-line"></span>Scroll</div>
+</section>
+
+<!-- CATEGORY BAND -->
+<section class="cat-band reveal">
+<div class="cat-inner">
+<p class="sec-label">Four Ways I Shoot</p>
+<h2 class="sec-title">Where to Look</h2>
+<div class="cat-grid">
+<a href="#weddings" class="cat-card">
+<img src="assets/photography/cat-weddings.webp" alt="Weddings"/>
+<div class="cat-overlay"></div>
+<div class="cat-content"><p class="cat-num">01</p><p class="cat-name">Weddings</p><p class="cat-desc">Ceremony films &amp; photos</p></div>
+</a>
+<a href="#candid" class="cat-card">
+<img src="assets/photography/cat-candid.webp" alt="Candid"/>
+<div class="cat-overlay"></div>
+<div class="cat-content"><p class="cat-num">02</p><p class="cat-name">Candid</p><p class="cat-desc">Unposed, unscripted</p></div>
+</a>
+<a href="#fashion" class="cat-card">
+<img src="assets/photography/cat-fashion.webp" alt="Fashion"/>
+<div class="cat-overlay"></div>
+<div class="cat-content"><p class="cat-num">03</p><p class="cat-name">Fashion</p><p class="cat-desc">Editorial photos &amp; films</p></div>
+</a>
+<a href="#product" class="cat-card">
+<img src="assets/photography/cat-product.webp" alt="Product"/>
+<div class="cat-overlay"></div>
+<div class="cat-content"><p class="cat-num">04</p><p class="cat-name">Product</p><p class="cat-desc">Commercial photos &amp; films</p></div>
+</a>
+</div>
+</div>
+</section>
+
+<!-- GALLERY: WEDDINGS + CANDID -->
+<section class="gallery reveal" id="weddings">
+<div class="gallery-head">
+<div>
+<p class="sec-label">Frozen Vows</p>
+<h2 class="sec-title">Wedding &amp; Candid</h2>
+</div>
+<div class="tabs" id="galTabs">
+<button class="tab-btn active" data-filter="all">All</button>
+<button class="tab-btn" data-filter="wedding">Weddings</button>
+<button class="tab-btn" data-filter="candid" id="candid">Candid</button>
+</div>
+</div>
+<div class="gallery-grid" id="galGrid">
+<div class="g-item show" data-cat="wedding"><img src="assets/photography/gallery/wedding-1.webp" alt="Wedding ceremony" loading="lazy"/><div class="g-overlay"></div><span class="g-lbl">Wedding Ceremony</span></div>
+<div class="g-item show" data-cat="wedding"><img src="assets/photography/gallery/wedding-2.webp" alt="Wedding couple portrait" loading="lazy"/><div class="g-overlay"></div><span class="g-lbl">Couple Portrait</span></div>
+<div class="g-item show" data-cat="wedding"><img src="assets/photography/gallery/wedding-3.webp" alt="Wedding rituals" loading="lazy"/><div class="g-overlay"></div><span class="g-lbl">Rituals</span></div>
+<div class="g-item show" data-cat="wedding"><img src="assets/photography/gallery/wedding-4.webp" alt="Wedding reception" loading="lazy"/><div class="g-overlay"></div><span class="g-lbl">Reception</span></div>
+<div class="g-item show" data-cat="candid"><img src="assets/photography/gallery/candid-1.webp" alt="Candid laughter" loading="lazy"/><div class="g-overlay"></div><span class="g-lbl">Unscripted</span></div>
+<div class="g-item show" data-cat="candid"><img src="assets/photography/gallery/candid-2.webp" alt="Candid family moment" loading="lazy"/><div class="g-overlay"></div><span class="g-lbl">Family Moment</span></div>
+<div class="g-item show" data-cat="candid"><img src="assets/photography/gallery/candid-3.webp" alt="Candid guest reaction" loading="lazy"/><div class="g-overlay"></div><span class="g-lbl">Guest Reaction</span></div>
+<div class="g-item show" data-cat="candid"><img src="assets/photography/gallery/candid-4.webp" alt="Candid detail shot" loading="lazy"/><div class="g-overlay"></div><span class="g-lbl">Little Details</span></div>
+</div>
+
+<!-- WISTIA FEATURED CANDID CLIP -->
+<div class="wistia-feature">
+<div class="wistia-feature-inner">
+<p class="wistia-feature-lbl">Featured Candid Film</p>
+<div class="wistia-frame">
+<script src="https://fast.wistia.com/embed/medias/iucf2cxudj.jsonp" async></script>
+<script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
+<div class="wistia_responsive_padding" style="padding:177.78% 0 0 0;position:relative;">
+<div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+<div class="wistia_embed wistia_async_iucf2cxudj seo=true videoFoam=true" style="height:100%;position:relative;width:100%">
+<div class="wistia_swatch" style="height:100%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;transition:opacity 200ms;width:100%;">
+<img src="https://fast.wistia.com/embed/medias/iucf2cxudj/swatch" style="filter:blur(5px);height:100%;object-fit:contain;width:100%;" alt="" aria-hidden="true" onload="this.parentNode.style.opacity=1;"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FASHION -->
+<section class="gallery reveal" id="fashion" style="margin-top:5rem">
+<div class="gallery-head">
+<div>
+<p class="sec-label">Editorial Eye</p>
+<h2 class="sec-title">Fashion</h2>
+</div>
+</div>
+<div class="gallery-grid">
+<div class="g-item show"><img src="assets/photography/gallery/fashion-1.webp" alt="Fashion editorial" loading="lazy"/><div class="g-overlay"></div><span class="g-lbl">Editorial Look</span></div>
+<div class="g-item show"><img src="assets/photography/gallery/fashion-2.webp" alt="Fashion studio shoot" loading="lazy"/><div class="g-overlay"></div><span class="g-lbl">Studio</span></div>
+<div class="g-item show"><img src="assets/photography/gallery/fashion-3.webp" alt="Fashion lookbook" loading="lazy"/><div class="g-overlay"></div><span class="g-lbl">Lookbook</span></div>
+<div class="g-item show"><img src="assets/photography/gallery/fashion-4.webp" alt="Fashion campaign" loading="lazy"/><div class="g-overlay"></div><span class="g-lbl">Campaign</span></div>
+</div>
+</section>
+
+<!-- FASHION + PRODUCT CLIPS -->
+<section class="clips reveal">
+<div class="clips-inner">
+<p class="sec-label">In Motion</p>
+<h2 class="sec-title">Fashion &amp; Product Films</h2>
+<div class="works-grid">
+<a class="work-card" href="#" target="_blank" rel="noopener">
+<div class="wc-thumb"><img src="assets/photography/clips/thumb-fashion-film-1.webp" alt="Fashion film"/></div>
+<div class="wc-overlay"></div><div class="wc-play">&#9654;</div><div class="wc-arrow">&#8599;</div>
+<div class="wc-content"><p class="wc-cat">Fashion Videography</p><p class="wc-title">Lookbook Film</p><p class="wc-role">Director &amp; Editor</p></div>
+</a>
+<a class="work-card" href="#" target="_blank" rel="noopener">
+<div class="wc-thumb"><img src="assets/photography/clips/thumb-fashion-film-2.webp" alt="Fashion campaign film"/></div>
+<div class="wc-overlay"></div><div class="wc-play">&#9654;</div><div class="wc-arrow">&#8599;</div>
+<div class="wc-content"><p class="wc-cat">Fashion Videography</p><p class="wc-title">Campaign Reel</p><p class="wc-role">Director &amp; Editor</p></div>
+</a>
+<a class="work-card" href="#" target="_blank" rel="noopener">
+<div class="wc-thumb"><img src="assets/photography/clips/thumb-product-film-1.webp" alt="Product film"/></div>
+<div class="wc-overlay"></div><div class="wc-play">&#9654;</div><div class="wc-arrow">&#8599;</div>
+<div class="wc-content"><p class="wc-cat">Product Videography</p><p class="wc-title">Product Showcase</p><p class="wc-role">Director &amp; Editor</p></div>
+</a>
+</div>
+</div>
+</section>
+
+<!-- PRODUCT GALLERY -->
+<section class="gallery reveal" id="product">
+<div class="gallery-head">
+<div>
+<p class="sec-label">Commercial Craft</p>
+<h2 class="sec-title">Product</h2>
+</div>
+</div>
+<div class="gallery-grid">
+<div class="g-item show"><img src="assets/photography/gallery/product-1.webp" alt="Product photography" loading="lazy"/><div class="g-overlay"></div><span class="g-lbl">Studio Product</span></div>
+<div class="g-item show"><img src="assets/photography/gallery/product-2.webp" alt="Product lifestyle shot" loading="lazy"/><div class="g-overlay"></div><span class="g-lbl">Lifestyle Shot</span></div>
+<div class="g-item show"><img src="assets/photography/gallery/product-3.webp" alt="Product flat lay" loading="lazy"/><div class="g-overlay"></div><span class="g-lbl">Flat Lay</span></div>
+<div class="g-item show"><img src="assets/photography/gallery/product-4.webp" alt="Product detail macro" loading="lazy"/><div class="g-overlay"></div><span class="g-lbl">Detail Macro</span></div>
+</div>
+
+<!-- WISTIA FEATURED PRODUCT CLIP -->
+<div class="wistia-feature">
+<div class="wistia-feature-inner" style="max-width:640px">
+<p class="wistia-feature-lbl">Featured Product Film</p>
+<div class="wistia-frame">
+<script src="https://fast.wistia.com/embed/medias/fnfbqeraiq.jsonp" async></script>
+<script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
+<div class="wistia_responsive_padding" style="padding:56.34% 0 0 0;position:relative;">
+<div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+<div class="wistia_embed wistia_async_fnfbqeraiq seo=true videoFoam=true" style="height:100%;position:relative;width:100%">
+<div class="wistia_swatch" style="height:100%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;transition:opacity 200ms;width:100%;">
+<img src="https://fast.wistia.com/embed/medias/fnfbqeraiq/swatch" style="filter:blur(5px);height:100%;object-fit:contain;width:100%;" alt="" aria-hidden="true" onload="this.parentNode.style.opacity=1;"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- MORE CLIPS (uncategorized) -->
+<section class="video-band reveal">
+<div class="video-band-inner">
+<p class="sec-label">More From The Reel</p>
+<h2 class="sec-title">More Clips</h2>
+<p class="video-note">These came in without titles telling me which shoot they're from — let me know which is Wedding, Candid, Fashion, or Product and I'll move each into its right section with a proper name.</p>
+<div class="video-grid">
+
+<div class="video-cell">
+<p class="video-cell-lbl">Clip &middot; 19519622</p>
+<script src="https://fast.wistia.com/embed/medias/3edkfwahzq.jsonp" async></script>
+<script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
+<div class="wistia_responsive_padding" style="padding:133.33% 0 0 0;position:relative;">
+<div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+<div class="wistia_embed wistia_async_3edkfwahzq seo=true videoFoam=true" style="height:100%;position:relative;width:100%">
+<div class="wistia_swatch" style="height:100%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;transition:opacity 200ms;width:100%;">
+<img src="https://fast.wistia.com/embed/medias/3edkfwahzq/swatch" style="filter:blur(5px);height:100%;object-fit:contain;width:100%;" alt="" aria-hidden="true" onload="this.parentNode.style.opacity=1;"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="video-cell">
+<p class="video-cell-lbl">Clip &middot; 23886432</p>
+<script src="https://fast.wistia.com/embed/medias/nd9ues061b.jsonp" async></script>
+<script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
+<div class="wistia_responsive_padding" style="padding:133.33% 0 0 0;position:relative;">
+<div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+<div class="wistia_embed wistia_async_nd9ues061b seo=true videoFoam=true" style="height:100%;position:relative;width:100%">
+<div class="wistia_swatch" style="height:100%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;transition:opacity 200ms;width:100%;">
+<img src="https://fast.wistia.com/embed/medias/nd9ues061b/swatch" style="filter:blur(5px);height:100%;object-fit:contain;width:100%;" alt="" aria-hidden="true" onload="this.parentNode.style.opacity=1;"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="video-cell">
+<p class="video-cell-lbl">Clip &middot; 25647288</p>
+<script src="https://fast.wistia.com/embed/medias/wr6e76krmt.jsonp" async></script>
+<script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
+<div class="wistia_responsive_padding" style="padding:133.33% 0 0 0;position:relative;">
+<div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+<div class="wistia_embed wistia_async_wr6e76krmt seo=true videoFoam=true" style="height:100%;position:relative;width:100%">
+<div class="wistia_swatch" style="height:100%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;transition:opacity 200ms;width:100%;">
+<img src="https://fast.wistia.com/embed/medias/wr6e76krmt/swatch" style="filter:blur(5px);height:100%;object-fit:contain;width:100%;" alt="" aria-hidden="true" onload="this.parentNode.style.opacity=1;"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="video-cell">
+<p class="video-cell-lbl">Clip &middot; 29908703</p>
+<script src="https://fast.wistia.com/embed/medias/4o3uol4hnz.jsonp" async></script>
+<script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
+<div class="wistia_responsive_padding" style="padding:133.33% 0 0 0;position:relative;">
+<div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+<div class="wistia_embed wistia_async_4o3uol4hnz seo=true videoFoam=true" style="height:100%;position:relative;width:100%">
+<div class="wistia_swatch" style="height:100%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;transition:opacity 200ms;width:100%;">
+<img src="https://fast.wistia.com/embed/medias/4o3uol4hnz/swatch" style="filter:blur(5px);height:100%;object-fit:contain;width:100%;" alt="" aria-hidden="true" onload="this.parentNode.style.opacity=1;"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="video-cell">
+<p class="video-cell-lbl">Clip &middot; 30160073</p>
+<script src="https://fast.wistia.com/embed/medias/9ik5kr7u0z.jsonp" async></script>
+<script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
+<div class="wistia_responsive_padding" style="padding:133.33% 0 0 0;position:relative;">
+<div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+<div class="wistia_embed wistia_async_9ik5kr7u0z seo=true videoFoam=true" style="height:100%;position:relative;width:100%">
+<div class="wistia_swatch" style="height:100%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;transition:opacity 200ms;width:100%;">
+<img src="https://fast.wistia.com/embed/medias/9ik5kr7u0z/swatch" style="filter:blur(5px);height:100%;object-fit:contain;width:100%;" alt="" aria-hidden="true" onload="this.parentNode.style.opacity=1;"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- SERVICES -->
+<section class="services reveal">
+<div class="services-inner">
+<p class="sec-label">What I Shoot</p>
+<h2 class="sec-title">Photography Services</h2>
+<div class="svc-grid">
+<div class="svc-card"><span class="svc-icon">&#128145;</span><p class="svc-name">Wedding Photography</p><p class="svc-desc">Full-day coverage of ceremony, rituals, and reception.</p><ul class="svc-list"><li>Pre-Wedding Shoots</li><li>Ceremony Coverage</li><li>Reception Coverage</li><li>Wedding Films</li></ul></div>
+<div class="svc-card"><span class="svc-icon">&#128247;</span><p class="svc-name">Candid Photography</p><p class="svc-desc">Real reactions and quiet moments, captured unposed.</p><ul class="svc-list"><li>Guest Candids</li><li>Family Moments</li><li>Documentary Style</li></ul></div>
+<div class="svc-card"><span class="svc-icon">&#128132;</span><p class="svc-name">Fashion Photography</p><p class="svc-desc">Editorial and lookbook photography with intentional light.</p><ul class="svc-list"><li>Editorials</li><li>Lookbooks</li><li>Portfolio Shoots</li></ul></div>
+<div class="svc-card"><span class="svc-icon">&#127916;</span><p class="svc-name">Fashion Videography</p><p class="svc-desc">Short-form films built for campaigns and reels.</p><ul class="svc-list"><li>Campaign Films</li><li>Lookbook Films</li><li>Social Reels</li></ul></div>
+<div class="svc-card"><span class="svc-icon">&#128230;</span><p class="svc-name">Product Photography</p><p class="svc-desc">Clean studio and lifestyle shots for catalogs and ads.</p><ul class="svc-list"><li>Studio Shoots</li><li>Lifestyle Shoots</li><li>E-commerce Sets</li></ul></div>
+<div class="svc-card"><span class="svc-icon">&#127909;</span><p class="svc-name">Product Videos</p><p class="svc-desc">Short commercial films that sell the product on sight.</p><ul class="svc-list"><li>Ad Films</li><li>Unboxing Style</li><li>Social Content</li></ul></div>
+</div>
+</div>
+</section>
+
+<!-- CTA -->
+<div class="cta-band reveal">
+<h2 class="cta-title">Have a Date, a Look, or a Launch to Capture?</h2>
+<p class="cta-sub">Let&rsquo;s plan the shoot &mdash; wedding, editorial, or product.</p>
+<a href="#contact" class="cta-btn">Book a Shoot &rarr;</a>
+</div>
+
+<!-- CONTACT -->
+<section class="contact reveal" id="contact">
+<div class="contact-inner">
+<div>
+<p class="sec-label">Get In Touch</p>
+<h2 class="sec-title" style="margin-bottom:1.2rem">Let&rsquo;s Plan<br>Your Shoot</h2>
+<p class="body-txt">Wedding, candid, fashion, or product &mdash; tell me the date and the vision, and I&rsquo;ll take it from there.</p>
+<div class="c-info">
+<div class="ci"><div class="ci-icon">&#128222;</div><div><div class="ci-lbl">Phone / WhatsApp</div><div class="ci-val"><a href="tel:+917676254844">+917676254844</a></div></div></div>
+<div class="ci"><div class="ci-icon">&#9993;</div><div><div class="ci-lbl">Email</div><div class="ci-val"><a href="mailto:shanmukhacreationfilms@gmail.com">shanmukhacreationfilms@gmail.com</a></div></div></div>
+<div class="ci"><div class="ci-icon">&#128205;</div><div><div class="ci-lbl">Based In</div><div class="ci-val">Bengaluru, Karnataka, India</div></div></div>
+</div>
+</div>
+<div>
+<p class="sec-label">Send a Message</p>
+<form class="form" id="cForm">
+<div class="form-row">
+<div class="fg"><label class="fl">Your Name</label><input class="fi" type="text" placeholder="Your name" required id="fn"/></div>
+<div class="fg"><label class="fl">Phone</label><input class="fi" type="tel" placeholder="+91 00000 00000" id="fp"/></div>
+</div>
+<div class="fg"><label class="fl">Email Address</label><input class="fi" type="email" placeholder="you@email.com" required id="fe"/></div>
+<div class="fg"><label class="fl">Shoot Type</label>
+<select class="fs" id="fserv"><option value="" disabled selected>Select a service</option><option>Wedding Photography</option><option>Candid Photography</option><option>Fashion Photography</option><option>Fashion Videography</option><option>Product Photography</option><option>Product Videos</option><option>Multiple Services</option><option>Other</option></select>
+</div>
+<div class="fg"><label class="fl">Project Details</label><textarea class="ft" placeholder="Date, location, and what you have in mind..." id="fm" required></textarea></div>
+<div class="fmsg" id="fmsg"></div>
+<button type="submit" class="fsub" id="fsub"><span id="ftxt">Send Message</span><span>&rarr;</span></button>
+</form>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<span class="foot-logo">Shanmukha Creations</span>
+<span class="foot-copy">&copy; 2025 Shanmukha Creations &middot; Bengaluru &middot; All rights reserved.</span>
+<ul class="foot-links">
+<li><a href="index.html">Films &amp; VFX</a></li>
+<li><a href="#weddings">Weddings</a></li>
+<li><a href="#fashion">Fashion</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+emailjs.init('aPY9JypVMnzBrltqR');
+var EJS_SVC = 'service_zy5eu6f', EJS_TPL = 'template_ddslyjt';
+
+/* CURSOR */
+var cur = document.getElementById('cur');
+var ring = document.getElementById('cur-ring');
+if (window.matchMedia('(hover:hover)').matches) {
+  document.addEventListener('mousemove', function(e) {
+    cur.style.left = ring.style.left = e.clientX + 'px';
+    cur.style.top = ring.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a,button').forEach(function(el) {
+    el.addEventListener('mouseenter', function() { document.body.classList.add('cur-hover'); });
+    el.addEventListener('mouseleave', function() { document.body.classList.remove('cur-hover'); });
+  });
+}
+
+/* MOBILE NAV */
+document.getElementById('mobOpen').onclick = function() { document.getElementById('mobMenu').classList.add('open'); };
+document.getElementById('mobClose').onclick = function() { document.getElementById('mobMenu').classList.remove('open'); };
+function closeMob() { document.getElementById('mobMenu').classList.remove('open'); }
+
+/* GALLERY FILTER TABS (Weddings / Candid) */
+document.querySelectorAll('#galTabs .tab-btn').forEach(function(btn) {
+  btn.onclick = function() {
+    document.querySelectorAll('#galTabs .tab-btn').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    var f = btn.dataset.filter;
+    document.querySelectorAll('#galGrid .g-item').forEach(function(item) {
+      item.classList.toggle('show', f === 'all' || item.dataset.cat === f);
+    });
+  };
+});
+
+/* SCROLL REVEAL */
+var obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+
+/* CONTACT FORM */
+document.getElementById('cForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var btn = document.getElementById('fsub');
+  var txt = document.getElementById('ftxt');
+  var msg = document.getElementById('fmsg');
+  btn.disabled = true; txt.textContent = 'Sending...'; msg.className = 'fmsg';
+  emailjs.send(EJS_SVC, EJS_TPL, {
+    subject: 'New Photography Enquiry - ' + document.getElementById('fn').value + ' | Shanmukha Creations',
+    message: 'New photography enquiry!\n\nName: ' + document.getElementById('fn').value + '\nPhone: ' + (document.getElementById('fp').value || 'Not provided') + '\nEmail: ' + document.getElementById('fe').value + '\nService: ' + (document.getElementById('fserv').value || 'Not selected') + '\n\nProject:\n' + document.getElementById('fm').value
+  }).then(function() {
+    msg.className = 'fmsg ok'; msg.textContent = 'Message sent! I will get back to you soon.';
+    document.getElementById('cForm').reset();
+  }).catch(function() {
+    msg.className = 'fmsg err'; msg.textContent = 'Something went wrong. Please email me directly.';
+  }).finally(function() {
+    btn.disabled = false; txt.textContent = 'Send Message';
+  });
+});
+</script>
+</body>
+</html>
